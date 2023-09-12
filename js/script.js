@@ -1,3 +1,24 @@
+document.addEventListener(`DOMContentLoaded`,function(){
+    const submitForm = document.querySelector(`#form`);
+
+    submitForm.addEventListener(`submit`,function(event){
+        event.preventDefault();
+        addTodo();
+    })
+})
+
+function addTodo(){
+    const textTodo = document.querySelector(`#title`);
+    const timeStamp = document.querySelector(`#date`);
+
+    const generateID = generateId();
+    const todoOject = generateTodoOject(generateID, textTodo, timeStamp, false);
+    todos.pusj(todoOject);
+
+    document.dispatchEvent(new Event(RENDER_EVENT));
+}
+
+
 function makeTodo(todoOject){
     const textTitle = document.createElement(`h2`);
     textTitle.innerText = todoOject.task;
