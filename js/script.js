@@ -61,5 +61,32 @@ function makeTodo(todoOject){
     container.appendChild(textContainer);
     container.setAttribute(`id`, `todo-${todoOject.id}`)
 
+    if(todoOject.isCompleted){
+        const undoBuuton = document.createElement(`button`);
+        undoBuuton.classList.add(`undo-button`);
+
+        undoBuuton.addEventListener(`click`,function(){
+            undoTaskFromCompleted(todoObject.id);
+        })
+
+        const trashButton = document.createElement(`button`);
+        trashButton.classList.add(`trash-button`)
+
+        trashButton.addEventListener(`click`, function(){
+            removeTaskFromCompleted(todoOject.id);
+        })
+
+        container.append(undoBuuton, trashButton);
+    }else{
+        const checkButton = document.createElement(`button`);
+        checkButton.classList.add(`check-button`);
+
+        checkButton.addEventListener(`click`,function(){
+            addTaskToCompleted(todoOject.id);
+        })
+
+        container.append(checkButton);
+    }
+
     return container;
 }
