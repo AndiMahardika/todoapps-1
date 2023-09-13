@@ -35,24 +35,31 @@ function generateTodoOject(id, task, timestamp, isCompleted){
 }
 
 document.addEventListener(RENDER_EVENT, function () {
-    console.log(todos);
+    const uncompletedTODOList = document.getElementById(`todos`);
+    uncompletedTODOList.innerHTML = ``;
+
+    for (const todoItem of todos) {
+        const todoElemet = makeTodo(todoItem);
+        uncompletedTODOList.appendChild(todoElemet);
+    }
+
   });
 
-// function makeTodo(todoOject){
-//     const textTitle = document.createElement(`h2`);
-//     textTitle.innerText = todoOject.task;
+function makeTodo(todoOject){
+    const textTitle = document.createElement(`h2`);
+    textTitle.innerText = todoOject.task;
 
-//     const textTimeStamp = document.createElement(`p`);
-//     textTimeStamp.innerText = todoOject.timeStamp;
+    const textTimeStamp = document.createElement(`p`);
+    textTimeStamp.innerText = todoOject.timeStamp;
 
-//     const textContainer = document.createElement(`div`);
-//     textContainer.classList.add(`inner`);
-//     textContainer.appendChild(textTitle, textTimeStamp);
+    const textContainer = document.createElement(`div`);
+    textContainer.classList.add(`inner`);
+    textContainer.appendChild(textTitle, textTimeStamp);
 
-//     const container = document.createElement(`div`);
-//     container.classList.add(`item`, `shadow`);
-//     container.appendChild(textContainer);
-//     container.setAttribute(`id`, `todo-${todoOject.id}`)
+    const container = document.createElement(`div`);
+    container.classList.add(`item`, `shadow`);
+    container.appendChild(textContainer);
+    container.setAttribute(`id`, `todo-${todoOject.id}`)
 
-//     return container;
-// }
+    return container;
+}
