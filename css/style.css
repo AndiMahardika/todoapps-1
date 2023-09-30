@@ -167,6 +167,28 @@ input[type=text], input[type=date], .btn-submit:focus {
     outline: none;
 }
 
+/* CSS untuk pesan mengambang */
+#toast-container {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+}
+
+.toast-message {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.5s ease-in-out;
+}
+
+.toast-message:hover {
+  opacity: 0.9;
+}
+
 
 @media only screen and (max-width: 1024px) {
     .wrapper {

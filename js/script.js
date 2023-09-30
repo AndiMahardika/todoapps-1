@@ -172,9 +172,20 @@ function saveData(){
     }
 }
 
-// document.addEventListener(SAVED_EVENT, function(){
-//     console.log(localStorage.getItem(STORAGE_KEY));
-// });
+document.addEventListener(SAVED_EVENT, function(){
+    const toastContainer = document.getElementById('toast-container');
+    toastContainer.innerHTML = ``;
+
+    const toastMessage = document.createElement('div');
+    toastMessage.classList.add('toast-message');
+    toastMessage.innerText = 'Data Todo Berhasil Diperbarui';
+
+    toastContainer.appendChild(toastMessage);
+
+    setTimeout(function() {
+        toastContainer.removeChild(toastMessage);
+    }, 3000);
+});
 
 function loadDataFromStorage(){
     const serializedData = localStorage.getItem(STORAGE_KEY);
