@@ -1,5 +1,7 @@
 const todos = [];
 const RENDER_EVENT = `render_todo`;
+const SAVED_EVENT = 'saved-todo';
+const STORAGE_KEY = 'TODO_APPS';
 
 document.addEventListener(`DOMContentLoaded`,function(){
     const submitForm = document.getElementById(`form`);
@@ -150,6 +152,14 @@ document.addEventListener(RENDER_EVENT, function () {
 });
 
 // Storage
+function isStorageExist(){
+    if(typeof(Storage) ==  undefined){
+        alert('Browser kamu tidak mendukung local storage');
+        return false;
+    }
+    return true;
+}
+
 function saveData(){
     if(isStorageExist()){
         const parsed = JSON.stringify(todos);
