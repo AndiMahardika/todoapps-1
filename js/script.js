@@ -167,3 +167,7 @@ function saveData(){
         document.dispatchEvent(new Event(SAVED_EVENT));
     }
 }
+
+document.addEventListener(SAVED_EVENT, function(){
+    console.log(localStorage.getItem(STORAGE_KEY));
+});
