@@ -9,7 +9,11 @@ document.addEventListener(`DOMContentLoaded`,function(){
     submitForm.addEventListener(`submit`,function(event){
         event.preventDefault();
         addTodo();
-    })
+    });
+
+    if (isStorageExist()) {
+        loadDataFromStorage();
+    }
 })
 
 function addTodo(){
@@ -168,6 +172,18 @@ function saveData(){
     }
 }
 
-document.addEventListener(SAVED_EVENT, function(){
-    console.log(localStorage.getItem(STORAGE_KEY));
-});
+// document.addEventListener(SAVED_EVENT, function(){
+//     console.log(localStorage.getItem(STORAGE_KEY));
+// });
+
+function loadDataFromStorage(){
+    const serializedData = localStorage.getItem(STORAGE_KEY);
+    const data = JSON.parse(serializedData);
+
+    if(data != null){
+        for (const todo of data) {
+            todos.push(todo);
+        }
+    }
+    document.dispatchEvent(new Event(RENDER_EVENT));
+};
